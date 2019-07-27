@@ -11,7 +11,7 @@ import UIKit
 class RepoCell: UITableViewCell {
     static let reuseIdentifier = "Repo cell id"
     
-    var userImageView = UIImageView()
+    var userImageView = NetworkImageView()
     var titleLabel = UILabel()
     var descriptionLabel = UILabel()
     var languageLabel = UILabel()
@@ -32,7 +32,7 @@ class RepoCell: UITableViewCell {
     
     func setupViews() {
         userImageView.translatesAutoresizingMaskIntoConstraints = false
-        userImageView.backgroundColor = .black
+        userImageView.contentMode = .scaleAspectFit
         addSubview(userImageView)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ class RepoCell: UITableViewCell {
     }
     
     func roundImageView() {
-        userImageView.layer.cornerRadius = userImageView.bounds.width / 2
+        userImageView.layer.cornerRadius = 5
         userImageView.layer.masksToBounds = true
     }
 }

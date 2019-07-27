@@ -23,6 +23,8 @@ struct ImageFetcher {
             self.currentDownloads[url]?.append(completionHandler)
             return
         }
+        
+        self.currentDownloads[url] = [completionHandler]
         let task = self.session.dataTask(with: url) { (data, _, error) in
             DispatchQueue.main.async {
                 let image: UIImage? = data.flatMap(UIImage.init)
