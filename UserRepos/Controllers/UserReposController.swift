@@ -12,11 +12,15 @@ class UserReposController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var repos = [Repo]()
     var dataSource = RepoTableDataSource()
+    let loadingController = LoadingController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        add(loadingController)
+        
         dataSource.dataChanged = { [weak self] isChanged in
+            self?.loadingController.remove()
             if isChanged {
                 self?.tableView.reloadData()
             }
