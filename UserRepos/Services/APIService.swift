@@ -9,10 +9,10 @@
 import Foundation
 
 struct APIService {
-    let baseURL = URL(string: "https://api.github.com")!
-    let decoder = JSONDecoder()
+    static let baseURL = URL(string: "https://api.github.com")!
+    static let decoder = JSONDecoder()
     
-    private let session: URLSession = {
+    private static let session: URLSession = {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .returnCacheDataElseLoad
         return URLSession(configuration: config)
@@ -35,7 +35,7 @@ struct APIService {
         }
     }
     
-    func GET<T: Codable>(endpoint: Endpoint, params: [String: String]? = nil, completionHandler: @escaping (Result<T, APIError>) -> Void) {
+    static func GET<T: Codable>(endpoint: Endpoint, params: [String: String]? = nil, completionHandler: @escaping (Result<T, APIError>) -> Void) {
         let queryURL = baseURL.appendingPathComponent(endpoint.path())
         var components = URLComponents(url: queryURL, resolvingAgainstBaseURL: true)!
         if let params = params {
