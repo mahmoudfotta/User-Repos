@@ -21,6 +21,7 @@ class UserReposController: UIViewController {
     
     func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(RepoCell.self, forCellReuseIdentifier: RepoCell.reuseIdentifier)
     }
     
@@ -35,6 +36,16 @@ class UserReposController: UIViewController {
                 print(error)
             }
         }
+    }
+}
+
+extension UserReposController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repo = repos[indexPath.row]
+        let repoWebController = RepoWebController()
+        repoWebController.repo = repo
+        navigationController?.pushViewController(repoWebController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 

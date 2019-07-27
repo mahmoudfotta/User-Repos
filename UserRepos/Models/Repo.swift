@@ -15,6 +15,7 @@ struct Repo: Codable {
     var language: String?
     var creationDate: Date
     var owner: Owner
+    var repoURL: String
     
     var formmatedDate: String {
         let formatter = DateFormatter()
@@ -26,6 +27,7 @@ struct Repo: Codable {
         case name, description, language, owner
         case forksCount = "forks_count"
         case creationDate = "created_at"
+        case repoURL = "html_url"
     }
     
     init(from decoder: Decoder) throws {
@@ -36,6 +38,7 @@ struct Repo: Codable {
         language = try container.decodeIfPresent(String.self, forKey: .language)
         creationDate = try container.decode(Date.self, forKey: .creationDate)
         owner = try container.decode(Owner.self, forKey: .owner)
+        repoURL = try container.decode(String.self, forKey: .repoURL)
     }
     
     func encode(to encoder: Encoder) throws {

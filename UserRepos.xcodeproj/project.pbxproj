@@ -21,6 +21,7 @@
 		0DF9DD2722EBBF2C00E3E1CE /* RepoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2622EBBF2C00E3E1CE /* RepoAPIManager.swift */; };
 		0DF9DD2922EC4B3600E3E1CE /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */; };
 		0DF9DD2C22EC54E700E3E1CE /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2B22EC54E700E3E1CE /* NetworkImageView.swift */; };
+		0DF9DD2F22EC68A500E3E1CE /* RepoWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2E22EC68A500E3E1CE /* RepoWebController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0DF9DD2622EBBF2C00E3E1CE /* RepoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoAPIManager.swift; sourceTree = "<group>"; };
 		0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		0DF9DD2B22EC54E700E3E1CE /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
+		0DF9DD2E22EC68A500E3E1CE /* RepoWebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoWebController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +132,12 @@
 		0DC0557F22EB4F1E00E907B2 /* UserRepos */ = {
 			isa = PBXGroup;
 			children = (
+				0DF9DD2D22EC682800E3E1CE /* Controllers */,
 				0DF9DD2A22EC54C900E3E1CE /* Views */,
 				0D77FCD122EB93380088AA38 /* Models */,
 				0D51CD9622EB9219004C4354 /* Services */,
 				0DC055AE22EB51D500E907B2 /* TableViewCells */,
 				0DC0558022EB4F1E00E907B2 /* AppDelegate.swift */,
-				0DC0558222EB4F1E00E907B2 /* UserReposController.swift */,
 				0DC0558422EB4F1E00E907B2 /* Main.storyboard */,
 				0DC0558722EB4F1F00E907B2 /* Assets.xcassets */,
 				0DC0558922EB4F1F00E907B2 /* LaunchScreen.storyboard */,
@@ -176,6 +178,15 @@
 				0DF9DD2B22EC54E700E3E1CE /* NetworkImageView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0DF9DD2D22EC682800E3E1CE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0DC0558222EB4F1E00E907B2 /* UserReposController.swift */,
+				0DF9DD2E22EC68A500E3E1CE /* RepoWebController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +324,7 @@
 				0DF9DD2922EC4B3600E3E1CE /* ImageFetcher.swift in Sources */,
 				0DF9DD2722EBBF2C00E3E1CE /* RepoAPIManager.swift in Sources */,
 				0D68E82322EBA60F0065261B /* Owner.swift in Sources */,
+				0DF9DD2F22EC68A500E3E1CE /* RepoWebController.swift in Sources */,
 				0DC0558122EB4F1E00E907B2 /* AppDelegate.swift in Sources */,
 				0D77FCD322EB93490088AA38 /* Repo.swift in Sources */,
 				0D51CD9822EB921A004C4354 /* APIService.swift in Sources */,
