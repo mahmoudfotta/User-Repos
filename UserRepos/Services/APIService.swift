@@ -12,6 +12,12 @@ struct APIService {
     let baseURL = URL(string: "https://api.github.com")!
     let decoder = JSONDecoder()
     
+    private let session: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .returnCacheDataElseLoad
+        return URLSession(configuration: config)
+    }()
+    
     enum APIError: Error {
         case noResponse
         case jsonDecodingError(error: Error)
@@ -39,8 +45,8 @@ struct APIService {
         }
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
-        request.cachePolicy = .returnCacheDataElseLoad
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        
+        let task = self.session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
                     completionHandler(.failure(.noResponse))
