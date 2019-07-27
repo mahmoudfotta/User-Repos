@@ -60,6 +60,7 @@ struct APIService {
                 return
             }
             do {
+                decoder.dateDecodingStrategy = .iso8601
                 let object = try self.decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {
                     completionHandler(.success(object))

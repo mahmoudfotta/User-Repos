@@ -13,8 +13,14 @@ struct Repo: Codable {
     var description: String
     var forksCount: Int
     var language: String?
-    var CreationDate: String
+    var creationDate: Date
     var owner: Owner
+    
+    var formmatedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY MM dd"
+        return formatter.string(from: creationDate)
+    }
     
     enum CodingKeys: String, CodingKey {
         case name, description, language, owner
@@ -28,7 +34,7 @@ struct Repo: Codable {
         description = try container.decode(String.self, forKey: .description)
         forksCount = try container.decode(Int.self, forKey: .forksCount)
         language = try container.decodeIfPresent(String.self, forKey: .language)
-        CreationDate = try container.decode(String.self, forKey: .creationDate)
+        creationDate = try container.decode(Date.self, forKey: .creationDate)
         owner = try container.decode(Owner.self, forKey: .owner)
     }
     

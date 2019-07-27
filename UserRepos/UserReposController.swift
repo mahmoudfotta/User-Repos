@@ -52,7 +52,7 @@ extension UserReposController: UITableViewDataSource {
         cell.descriptionLabel.text = repo.description
         cell.languageLabel.text = repo.language ?? ""
         cell.forksLabel.text = "\(repo.forksCount)"
-        cell.dateLabel.text = repo.CreationDate
+        cell.dateLabel.text = repo.formmatedDate
         cell.userImageView.url = URL(string: repo.owner.avatarURL)
         return cell
     }
