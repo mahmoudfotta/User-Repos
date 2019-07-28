@@ -92,4 +92,16 @@ class UserReposTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    //MARK:- UserREposController
+    
+    func testTableViewNotNil() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let navController = storyBoard.instantiateInitialViewController() as! UINavigationController
+        let userReposController = navController.viewControllers.first as! UserReposController
+        
+        userReposController.loadViewIfNeeded()
+        
+        XCTAssertNotNil(userReposController.tableView)
+    }
 }

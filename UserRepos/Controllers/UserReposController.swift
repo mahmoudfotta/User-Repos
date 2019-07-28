@@ -10,7 +10,6 @@ import UIKit
 
 class UserReposController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    var repos = [Repo]()
     var dataSource = RepoTableDataSource()
     let loadingController = LoadingController()
     
@@ -22,6 +21,7 @@ class UserReposController: UIViewController {
         dataSource.dataChanged = { [weak self] isChanged in
             self?.loadingController.remove()
             if isChanged {
+                self?.title = self?.dataSource.repoOwnerName()
                 self?.tableView.reloadData()
             }
         }

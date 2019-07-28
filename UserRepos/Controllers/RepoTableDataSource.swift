@@ -36,6 +36,10 @@ class RepoTableDataSource: NSObject,  UITableViewDataSource {
         return repos[indexPath.row]
     }
     
+    func repoOwnerName() -> String? {
+        return repos.first?.owner.name
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repos.count
     }
