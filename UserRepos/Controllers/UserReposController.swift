@@ -11,6 +11,7 @@ import UIKit
 class UserReposController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var dataSource = RepoTableDataSource()
+    let delegate = RepoTableDelegate()
     let loadingController = LoadingController()
     
     override func viewDidLoad() {
@@ -18,6 +19,17 @@ class UserReposController: UIViewController {
         setupTableView()
         add(loadingController)
         
+        handleDataSourceDataChanged()
+        handleCellTapped()
+    }
+    
+    func setupTableView() {
+        tableView.dataSource = dataSource
+        tableView.delegate = delegate
+        tableView.register(RepoCell.self, forCellReuseIdentifier: RepoCell.reuseIdentifier)
+    }
+    
+    func handleDataSourceDataChanged() {
         dataSource.dataChanged = { [weak self] isChanged in
             self?.loadingController.remove()
             if isChanged {
@@ -27,19 +39,12 @@ class UserReposController: UIViewController {
         }
     }
     
-    func setupTableView() {
-        tableView.dataSource = dataSource
-        tableView.delegate = self
-        tableView.register(RepoCell.self, forCellReuseIdentifier: RepoCell.reuseIdentifier)
-    }
-}
-
-extension UserReposController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repo = dataSource.repo(at: indexPath)
-        let repoWebController = RepoWebController()
-        repoWebController.repo = repo
-        navigationController?.pushViewController(repoWebController, animated: true)
-        tableView.deselectRow(at: indexPath, animated: false)
+    func handleCellTapped() {
+        delegate.cellTapped = { [weak self] indexPath in
+            let repo = self?.dataSource.repo(at: indexPath)
+            let repoWebController = RepoWebController()
+            repoWebController.repo = repo
+            self?.navigationController?.pushViewController(repoWebController, animated: true)
+        }
     }
 }
