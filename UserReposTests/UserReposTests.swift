@@ -93,7 +93,28 @@ class UserReposTests: XCTestCase {
         }
     }
     
-    //MARK:- UserREposController
+    func testTableViewCellForRowAtIndexPathLabelsDataEqualToCurrentRepoData() {
+        dataSource.repos = [decodeRepoData()!]
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let navController = storyBoard.instantiateInitialViewController() as! UINavigationController
+        let userReposController = navController.viewControllers.first as! UserReposController
+        userReposController.dataSource = dataSource
+        
+        userReposController.loadViewIfNeeded()
+        
+        for (index, repo) in dataSource.repos.enumerated() {
+            let indexPath = IndexPath(row: index, section: 0)
+            guard let cell = dataSource.tableView(userReposController.tableView, cellForRowAt: indexPath) as? RepoCell else { return }
+            XCTAssertEqual(cell.titleLabel.text, repo.name)
+            XCTAssertEqual(cell.languageLabel.text, repo.language)
+            XCTAssertEqual(cell.descriptionLabel.text, repo.description)
+            XCTAssertEqual(cell.dateLabel.text, repo.formmatedDate)
+            XCTAssertEqual(cell.forksLabel.text, "\(repo.forksCount)")
+            XCTAssertEqual(cell.userImageView.url?.absoluteString, repo.owner.avatarURL)
+        }
+    }
+    
+    //MARK:- UserReposController
     
     func testTableViewNotNil() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
