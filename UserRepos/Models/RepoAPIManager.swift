@@ -9,9 +9,14 @@
 import Foundation
 
 struct RepoAPIManager {
+    var apiService: APIService
+    
+    init(apiService: APIService = APIService()) {
+        self.apiService = apiService
+    }
     
     func fetchUserRepos(completionHandler: @escaping (Result<[Repo], APIService.APIError>) -> Void) {
-        APIService.GET(endpoint: .userRepos) { (result: Result<[Repo], APIService.APIError>) in
+        apiService.GET(using: apiService.session, endpoint: .userRepos) { (result: Result<[Repo], APIService.APIError>) in
             switch result {
             case let .success(repos):
                 completionHandler(.success(repos))

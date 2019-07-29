@@ -10,8 +10,8 @@ import XCTest
 @testable import UserRepos
 
 class UserReposTests: XCTestCase {
-    var repoJson = """
-    {
+    var reposJson = """
+    [{
     "name": "Codextended",
     "full_name": "JohnSundell/Codextended",
     "owner": {
@@ -26,14 +26,14 @@ class UserReposTests: XCTestCase {
     "language": "Swift",
     "forks_count": 36,
     "forks": 36,
-    }
+    }]
 """
     
     var repoData: Data!
     var dataSource: RepoTableDataSource!
     
     override func setUp() {
-        repoData = repoJson.data(using: .utf8)
+        repoData = reposJson.data(using: .utf8)
         dataSource = RepoTableDataSource(isTesting: true)
     }
 
@@ -42,19 +42,19 @@ class UserReposTests: XCTestCase {
         dataSource = nil
     }
     
-    func decodeRepoData() -> Repo? {
+    func decodeRepoData() -> [Repo]? {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        let repo = try? decoder.decode(Repo.self, from: repoData)
-        return repo
+        let repos = try? decoder.decode([Repo].self, from: repoData)
+        return repos
     }
 
     //MARK:- Repo and Ownwr Tests
     
     func testRepoAndOwnerDataDecodedCorrectly() {
-        let repo = decodeRepoData()
+        let repos = decodeRepoData()
         
-        if let repo = repo {
+        if let repo = repos?.first {
             XCTAssertEqual(repo.name, "Codextended")
             XCTAssertEqual(repo.language, "Swift")
             XCTAssertEqual(repo.forksCount, 36)
@@ -67,13 +67,55 @@ class UserReposTests: XCTestCase {
     }
     
     func testRepoDateFormatIsCorrect() {
-        let repo = decodeRepoData()
+        let repos = decodeRepoData()
         
-        if let repo = repo {
+        if let repo = repos?.first {
             XCTAssertEqual(repo.formmatedDate, "2019 04 07")
         } else {
             XCTFail("Error decoding repo data")
         }
+    }
+    
+    func testAPIServiceFetchUserReposAreFetched() {
+        let session = URLSessionMock()
+        session.testData = repoData
+        let apiService = APIService()
+        let expectation = XCTestExpectation(description: "Dowloading repos are downloading correctly.")
+        
+        apiService.GET(using: session, endpoint: .userRepos, params: nil) { (result: Result<[Repo], APIService.APIError>) in
+            switch result {
+            case let .success(repo):
+                XCTAssertEqual(repo.first?.name, "Codextended")
+                expectation.fulfill()
+            case let .failure(error):
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        
+        wait(for: [expectation], timeout: 5)
+    }
+    
+    func testRepoAPIManagerFetchUserReposAreFetched() {
+        let session = URLSessionMock()
+        session.testData = repoData
+        var apiService = APIService()
+        apiService.session = session
+        let repoAPIManager = RepoAPIManager(apiService: apiService)
+        
+        let expectation = XCTestExpectation(description: "Dowloading repos are downloading correctly.")
+        repoAPIManager.fetchUserRepos { (result: Result<[Repo], APIService.APIError>) in
+            switch result {
+            case let .success(repo):
+                XCTAssertEqual(repo.first?.name, "Codextended")
+                expectation.fulfill()
+            case let .failure(error):
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        
+        wait(for: [expectation], timeout: 5)
     }
     
     //MARK:- Repo DataSource Tests
@@ -83,10 +125,10 @@ class UserReposTests: XCTestCase {
     }
     
     func testSettingReposPropertyIsSettingCorrectly() {
-        let repo = decodeRepoData()
+        let repos = decodeRepoData()
         
-        if let repo = repo {
-            dataSource.repos = [repo]
+        if let repos = repos {
+            dataSource.repos = repos
             XCTAssertEqual(dataSource.repos.count, 1)
         } else {
             XCTFail()
@@ -94,7 +136,7 @@ class UserReposTests: XCTestCase {
     }
     
     func testTableViewCellForRowAtIndexPathLabelsDataEqualToCurrentRepoData() {
-        dataSource.repos = [decodeRepoData()!]
+        dataSource.repos = decodeRepoData() ?? []
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let navController = storyBoard.instantiateInitialViewController() as! UINavigationController
         let userReposController = navController.viewControllers.first as! UserReposController

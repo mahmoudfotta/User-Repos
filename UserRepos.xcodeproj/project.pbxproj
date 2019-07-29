@@ -19,6 +19,7 @@
 		0DC055A122EB4F1F00E907B2 /* UserReposUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC055A022EB4F1F00E907B2 /* UserReposUITests.swift */; };
 		0DC055B022EB521700E907B2 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC055AF22EB521700E907B2 /* RepoCell.swift */; };
 		0DED03F722EF7FAB0028AA62 /* RepoTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DED03F622EF7FAB0028AA62 /* RepoTableDelegate.swift */; };
+		0DED03FA22EF87DC0028AA62 /* APIServiceTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DED03F822EF84C70028AA62 /* APIServiceTestHelper.swift */; };
 		0DF9DD2722EBBF2C00E3E1CE /* RepoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2622EBBF2C00E3E1CE /* RepoAPIManager.swift */; };
 		0DF9DD2922EC4B3600E3E1CE /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */; };
 		0DF9DD2C22EC54E700E3E1CE /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2B22EC54E700E3E1CE /* NetworkImageView.swift */; };
@@ -64,6 +65,7 @@
 		0DC055A222EB4F1F00E907B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC055AF22EB521700E907B2 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 		0DED03F622EF7FAB0028AA62 /* RepoTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableDelegate.swift; sourceTree = "<group>"; };
+		0DED03F822EF84C70028AA62 /* APIServiceTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTestHelper.swift; sourceTree = "<group>"; };
 		0DF9DD2622EBBF2C00E3E1CE /* RepoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoAPIManager.swift; sourceTree = "<group>"; };
 		0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		0DF9DD2B22EC54E700E3E1CE /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				0D51CD9722EB9219004C4354 /* APIService.swift */,
 				0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */,
+				0DED03F822EF84C70028AA62 /* APIServiceTestHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				0DF9DD3822ED13E900E3E1CE /* UIViewController+ChildController.swift in Sources */,
 				0DF9DD3322ECFB3B00E3E1CE /* RepoTableDataSource.swift in Sources */,
 				0DF9DD2922EC4B3600E3E1CE /* ImageFetcher.swift in Sources */,
+				0DED03FA22EF87DC0028AA62 /* APIServiceTestHelper.swift in Sources */,
 				0DF9DD2722EBBF2C00E3E1CE /* RepoAPIManager.swift in Sources */,
 				0D68E82322EBA60F0065261B /* Owner.swift in Sources */,
 				0DF9DD2F22EC68A500E3E1CE /* RepoWebController.swift in Sources */,

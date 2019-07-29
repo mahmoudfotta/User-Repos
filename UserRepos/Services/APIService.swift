@@ -9,10 +9,10 @@
 import Foundation
 
 struct APIService {
-    static let baseURL = URL(string: "https://api.github.com")!
-    static let decoder = JSONDecoder()
+    let baseURL = URL(string: "https://api.github.com")!
+    let decoder = JSONDecoder()
     
-    private static let session: URLSession = {
+    var session: URLSessionProtocol = {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .returnCacheDataElseLoad
         return URLSession(configuration: config)
@@ -35,7 +35,7 @@ struct APIService {
         }
     }
     
-    static func GET<T: Codable>(endpoint: Endpoint, params: [String: String]? = nil, completionHandler: @escaping (Result<T, APIError>) -> Void) {
+    func GET<T: Codable>(using session: URLSessionProtocol, endpoint: Endpoint, params: [String: String]? = nil, completionHandler: @escaping (Result<T, APIError>) -> Void) {
         let queryURL = baseURL.appendingPathComponent(endpoint.path())
         var components = URLComponents(url: queryURL, resolvingAgainstBaseURL: true)!
         if let params = params {
@@ -46,7 +46,7 @@ struct APIService {
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
         
-        let task = self.session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
                     completionHandler(.failure(.noResponse))
@@ -60,7 +60,7 @@ struct APIService {
                 return
             }
             do {
-                decoder.dateDecodingStrategy = .iso8601
+                self.decoder.dateDecodingStrategy = .iso8601
                 let object = try self.decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {
                     completionHandler(.success(object))
