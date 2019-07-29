@@ -82,7 +82,7 @@ class UserReposTests: XCTestCase {
         let apiService = APIService()
         let expectation = XCTestExpectation(description: "Dowloading repos are downloading correctly.")
         
-        apiService.GET(using: session, endpoint: .userRepos, params: nil) { (result: Result<[Repo], APIService.APIError>) in
+        apiService.GET(for: ReposRoute.userRepos, session: session, params: nil) { (result: Result<[Repo], APIService.APIError>) in
             switch result {
             case let .success(repo):
                 XCTAssertEqual(repo.first?.name, "Codextended")
@@ -104,7 +104,7 @@ class UserReposTests: XCTestCase {
         let repoAPIManager = RepoAPIManager(apiService: apiService)
         
         let expectation = XCTestExpectation(description: "Dowloading repos are downloading correctly.")
-        repoAPIManager.fetchUserRepos { (result: Result<[Repo], APIService.APIError>) in
+        repoAPIManager.fetchUserRepos(for: ReposRoute.userRepos) { (result: Result<[Repo], APIService.APIError>) in
             switch result {
             case let .success(repo):
                 XCTAssertEqual(repo.first?.name, "Codextended")

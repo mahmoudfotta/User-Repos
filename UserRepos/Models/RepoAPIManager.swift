@@ -15,8 +15,8 @@ struct RepoAPIManager {
         self.apiService = apiService
     }
     
-    func fetchUserRepos(completionHandler: @escaping (Result<[Repo], APIService.APIError>) -> Void) {
-        apiService.GET(using: apiService.session, endpoint: .userRepos) { (result: Result<[Repo], APIService.APIError>) in
+    func fetchUserRepos(for route: APIRoute, completionHandler: @escaping (Result<[Repo], APIService.APIError>) -> Void) {
+        apiService.GET(for: route, session: apiService.session) { (result: Result<[Repo], APIService.APIError>) in
             switch result {
             case let .success(repos):
                 completionHandler(.success(repos))

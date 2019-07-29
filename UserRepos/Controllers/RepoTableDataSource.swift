@@ -21,7 +21,7 @@ class RepoTableDataSource: NSObject,  UITableViewDataSource {
     }
 
     func fetchRepos() {
-        repoApiManager.fetchUserRepos {[weak self] (result: Result<[Repo], APIService.APIError>) in
+        repoApiManager.fetchUserRepos(for: ReposRoute.userRepos) {[weak self] (result: Result<[Repo], APIService.APIError>) in
             switch result {
             case let .success(repos):
                 self?.repos = repos

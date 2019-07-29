@@ -20,6 +20,8 @@
 		0DC055B022EB521700E907B2 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC055AF22EB521700E907B2 /* RepoCell.swift */; };
 		0DED03F722EF7FAB0028AA62 /* RepoTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DED03F622EF7FAB0028AA62 /* RepoTableDelegate.swift */; };
 		0DED03FA22EF87DC0028AA62 /* APIServiceTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DED03F822EF84C70028AA62 /* APIServiceTestHelper.swift */; };
+		0DED03FE22EFAFB20028AA62 /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DED03FD22EFAFB20028AA62 /* APIRoute.swift */; };
+		0DED040022EFB38E0028AA62 /* APIRoute+Repos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DED03FF22EFB38E0028AA62 /* APIRoute+Repos.swift */; };
 		0DF9DD2722EBBF2C00E3E1CE /* RepoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2622EBBF2C00E3E1CE /* RepoAPIManager.swift */; };
 		0DF9DD2922EC4B3600E3E1CE /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */; };
 		0DF9DD2C22EC54E700E3E1CE /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF9DD2B22EC54E700E3E1CE /* NetworkImageView.swift */; };
@@ -66,6 +68,8 @@
 		0DC055AF22EB521700E907B2 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 		0DED03F622EF7FAB0028AA62 /* RepoTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableDelegate.swift; sourceTree = "<group>"; };
 		0DED03F822EF84C70028AA62 /* APIServiceTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTestHelper.swift; sourceTree = "<group>"; };
+		0DED03FD22EFAFB20028AA62 /* APIRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoute.swift; sourceTree = "<group>"; };
+		0DED03FF22EFB38E0028AA62 /* APIRoute+Repos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIRoute+Repos.swift"; sourceTree = "<group>"; };
 		0DF9DD2622EBBF2C00E3E1CE /* RepoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoAPIManager.swift; sourceTree = "<group>"; };
 		0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		0DF9DD2B22EC54E700E3E1CE /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				0D51CD9722EB9219004C4354 /* APIService.swift */,
 				0DF9DD2822EC4B3600E3E1CE /* ImageFetcher.swift */,
 				0DED03F822EF84C70028AA62 /* APIServiceTestHelper.swift */,
+				0DED03FD22EFAFB20028AA62 /* APIRoute.swift */,
+				0DED03FF22EFB38E0028AA62 /* APIRoute+Repos.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 			files = (
 				0DC0558322EB4F1E00E907B2 /* UserReposController.swift in Sources */,
 				0DF9DD3822ED13E900E3E1CE /* UIViewController+ChildController.swift in Sources */,
+				0DED03FE22EFAFB20028AA62 /* APIRoute.swift in Sources */,
 				0DF9DD3322ECFB3B00E3E1CE /* RepoTableDataSource.swift in Sources */,
 				0DF9DD2922EC4B3600E3E1CE /* ImageFetcher.swift in Sources */,
 				0DED03FA22EF87DC0028AA62 /* APIServiceTestHelper.swift in Sources */,
@@ -372,6 +379,7 @@
 				0D77FCD322EB93490088AA38 /* Repo.swift in Sources */,
 				0D51CD9822EB921A004C4354 /* APIService.swift in Sources */,
 				0DF9DD2C22EC54E700E3E1CE /* NetworkImageView.swift in Sources */,
+				0DED040022EFB38E0028AA62 /* APIRoute+Repos.swift in Sources */,
 				0DC055B022EB521700E907B2 /* RepoCell.swift in Sources */,
 				0DED03F722EF7FAB0028AA62 /* RepoTableDelegate.swift in Sources */,
 			);

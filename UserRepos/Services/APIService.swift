@@ -24,26 +24,9 @@ struct APIService {
         case networkError(error: Error)
     }
     
-    enum Endpoint {
-        case userRepos
-        
-        func path() -> String {
-            switch self {
-            case .userRepos:
-                return "/users/johnsundell/repos"
-            }
-        }
-    }
-    
-    func GET<T: Codable>(using session: URLSessionProtocol, endpoint: Endpoint, params: [String: String]? = nil, completionHandler: @escaping (Result<T, APIError>) -> Void) {
-        let queryURL = baseURL.appendingPathComponent(endpoint.path())
-        var components = URLComponents(url: queryURL, resolvingAgainstBaseURL: true)!
-        if let params = params {
-            for (_, value) in params.enumerated() {
-                components.queryItems?.append(URLQueryItem(name: value.key, value: value.value))
-            }
-        }
-        var request = URLRequest(url: components.url!)
+    func GET<T: Codable>(for route: APIRoute, session: URLSessionProtocol, params: [String: String]? = nil, completionHandler: @escaping (Result<T, APIError>) -> Void) {
+        let url = route.resolve(baseURL: baseURL, parameters: params)
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
         let task = session.dataTask(with: request) { (data, response, error) in
